@@ -2,11 +2,13 @@ package ru.yandex.qa_scooter.tests;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.yandex.qa_scooter.helpers.BrowserRules;
 import ru.yandex.qa_scooter.pom_pages.HomePage;
 
 import java.time.Duration;
@@ -15,6 +17,11 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class AnswerTextMatchesTests {
+    @Rule
+    public BrowserRules browserRules = new BrowserRules(FIRE_FOX);
+
+    private static final String CHROME = "chrome";
+    private static final String FIRE_FOX = "ff";
     private final int questionNumber;
     private final String expectedAnswer;
     private WebDriver driver;
@@ -22,19 +29,6 @@ public class AnswerTextMatchesTests {
     public AnswerTextMatchesTests(int questionNumber, String expectedAnswer) {
         this.questionNumber = questionNumber;
         this.expectedAnswer = expectedAnswer;
-    }
-
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Webdrivers\\chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "C:\\Webdrivers\\geckodriver.exe");
-        //driver = new ChromeDriver();
-        driver = new FirefoxDriver();
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
     }
 
     @Parameterized.Parameters(name = "номер вопроса = {0}, ответ = {1} ")
@@ -54,8 +48,7 @@ public class AnswerTextMatchesTests {
 
     @Test
     public void importantQuestionHasVisibleText() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        HomePage objHomePage = new HomePage(driver);
+        HomePage objHomePage = new HomePage(browserRules.getDriver());
         objHomePage.goToHomePage();
         objHomePage.scrollDown();
         objHomePage.waitForFAQListLoad();
