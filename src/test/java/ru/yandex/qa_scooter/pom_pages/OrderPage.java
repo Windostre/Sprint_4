@@ -1,9 +1,7 @@
 package ru.yandex.qa_scooter.pom_pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.DateFormat;
@@ -13,6 +11,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import static ru.yandex.qa_scooter.helpers.Constants.BLACK_COLOR;
+import static ru.yandex.qa_scooter.helpers.Constants.GREY_COLOR;
 
 /**
  * Описание страницы заказа
@@ -51,9 +52,11 @@ public class OrderPage {
     private final By rentPeriodList = By.className("Dropdown-option");
     //поле даты доставки
     private final By deliveryDate = By.xpath(".//input[contains(@placeholder,'Когда привезти самокат')]");
-    //выбор цвета черный жемчужный
+    //чекбокс выбора цветов
+    private final By colorCheckbox = By.xpath(".//input[@type ='checkbox']");
+    //чекбокс выбора черный жемчужный
     private final By colourBlack = By.cssSelector("input#black");
-    //выбор цвета черный жемчужный
+    //выбор цвета серая безисходность
     private final By colourGrey = By.cssSelector("input#grey");
     //комментарий
     private final By commentForDelivery = By.xpath(".//input[contains(@placeholder,'Комментарий')]");
@@ -111,11 +114,17 @@ public class OrderPage {
         List<WebElement> elements = driver.findElements(rentPeriodList);
         elements.get(index).click();
     }
+    public void selectScooterColor(String colour) {
 
-    public void fillRentInfoForm(String comment) {
+        if(GREY_COLOR.equals(colour)) {
+            driver.findElement(colourGrey).click();
+        } else if (BLACK_COLOR.equals(colour)) {
+            driver.findElement(colourBlack).click();
+        }
 
+    }
 
-        driver.findElement(colourGrey).click();
+    public void makeComment(String comment) {
         driver.findElement(commentForDelivery).sendKeys(comment);
 
     }
