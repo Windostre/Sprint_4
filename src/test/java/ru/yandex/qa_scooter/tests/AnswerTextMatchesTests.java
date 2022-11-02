@@ -1,17 +1,12 @@
 package ru.yandex.qa_scooter.tests;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.yandex.qa_scooter.helpers.BrowserRules;
 import ru.yandex.qa_scooter.pom_pages.HomePage;
-
-import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
 
