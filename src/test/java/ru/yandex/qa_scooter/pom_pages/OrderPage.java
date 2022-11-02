@@ -46,7 +46,9 @@ public class OrderPage {
     //поле периодя
     private final By rentPeriod = By.className("Dropdown-control");
     //списко доступных периодов
-    private final By rentDay = By.xpath(".//div[@class='Dropdown-option' and text()='сутки']");
+    private final By rentField = By.xpath(".//div[contains(text(),'Срок аренды')] ");
+
+    private final By rentPeriodList = By.className("Dropdown-option");
     //поле даты доставки
     private final By deliveryDate = By.xpath(".//input[contains(@placeholder,'Когда привезти самокат')]");
     //выбор цвета черный жемчужный
@@ -104,10 +106,15 @@ public class OrderPage {
         driver.findElement(deliveryDate).sendKeys(Keys.ENTER);
     }
 
+    public void selectRentPeriod(int index) {
+        driver.findElement(rentField).click();
+        List<WebElement> elements = driver.findElements(rentPeriodList);
+        elements.get(index).click();
+    }
+
     public void fillRentInfoForm(String comment) {
 
-        driver.findElement(rentPeriod).click();
-        driver.findElement(rentDay).click();
+
         driver.findElement(colourGrey).click();
         driver.findElement(commentForDelivery).sendKeys(comment);
 

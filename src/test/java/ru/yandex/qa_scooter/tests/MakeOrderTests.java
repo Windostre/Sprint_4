@@ -1,8 +1,11 @@
 package ru.yandex.qa_scooter.tests;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
+import org.slf4j.helpers.Util;
 import ru.yandex.qa_scooter.helpers.BrowserRules;
+import ru.yandex.qa_scooter.helpers.Utils;
 import ru.yandex.qa_scooter.pom_pages.HomePage;
 import ru.yandex.qa_scooter.pom_pages.OrderPage;
 
@@ -17,6 +20,7 @@ public class MakeOrderTests {
 
     private static final String CHROME = "chrome";
     private static final String FIRE_FOX = "ff";
+        private static final int INDEX = Utils.randomNumber();
 
     @Test
     public void makeOrderHeaderButtonPositive() {
@@ -30,7 +34,8 @@ public class MakeOrderTests {
                 , "+12345678900"
                 , "Сокол");
         objOrderPage.pressNext();
-        objOrderPage.setDeliveryDate(2);
+        objOrderPage.setDeliveryDate(INDEX); //нет требования макс дню доставки
+        objOrderPage.selectRentPeriod(INDEX);
         objOrderPage.fillRentInfoForm("Какой чудесный день");
         objOrderPage.clickMakeOrderButton();
         objOrderPage.waitForConfirmationOrderMessage();
@@ -54,7 +59,8 @@ public class MakeOrderTests {
                     , "+12345678900"
                     , "Сокол");
             objOrderPage.pressNext();
-            objOrderPage.setDeliveryDate(0);
+            objOrderPage.setDeliveryDate(INDEX); //нет требования макс дню доставки
+            objOrderPage.selectRentPeriod(INDEX);
             objOrderPage.fillRentInfoForm("Какой чудесный день");
             objOrderPage.clickMakeOrderButton();
             objOrderPage.waitForConfirmationOrderMessage();
