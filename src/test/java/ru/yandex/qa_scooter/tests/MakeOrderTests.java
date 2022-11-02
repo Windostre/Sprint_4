@@ -30,19 +30,20 @@ public class MakeOrderTests {
                 , "+12345678900"
                 , "Сокол");
         objOrderPage.pressNext();
+        objOrderPage.setDeliveryDate(2);
         objOrderPage.fillRentInfoForm("Какой чудесный день");
         objOrderPage.clickMakeOrderButton();
         objOrderPage.waitForConfirmationOrderMessage();
         objOrderPage.submitOrder();
-        boolean isStatusOrderInfoAvailabel = objOrderPage.orderIsMade();
+        boolean isStatusOrderInfoAvailable = objOrderPage.orderIsMade();
         String orderMessage = objOrderPage.getOrderMessage();
 
-        assertEquals(isStatusOrderInfoAvailabel, true);
+        assertEquals(isStatusOrderInfoAvailable, true);
         assertThat(orderMessage, allOf(startsWith("Заказ оформлен"), containsString("Номер заказа")));
     }
 
         @Test
-        public void makeOrderBotomButtonPositive() {
+        public void makeOrderBottomButtonPositive() {
             HomePage objHomePage = new HomePage(browserRules.getDriver());
             objHomePage.goToHomePage();
             objHomePage.clickBottomOrderButton();
@@ -53,14 +54,15 @@ public class MakeOrderTests {
                     , "+12345678900"
                     , "Сокол");
             objOrderPage.pressNext();
+            objOrderPage.setDeliveryDate(0);
             objOrderPage.fillRentInfoForm("Какой чудесный день");
             objOrderPage.clickMakeOrderButton();
             objOrderPage.waitForConfirmationOrderMessage();
             objOrderPage.submitOrder();
-            boolean isStatusOrderInfoAvailabel = objOrderPage.orderIsMade();
+            boolean isStatusOrderInfoAvailable = objOrderPage.orderIsMade();
             String orderMessage = objOrderPage.getOrderMessage();
 
-            assertEquals(isStatusOrderInfoAvailabel, true);
+            assertEquals(isStatusOrderInfoAvailable, true);
             assertThat(orderMessage, allOf(startsWith("Заказ оформлен"), containsString("Номер заказа")));
         }
 

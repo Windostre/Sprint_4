@@ -84,7 +84,6 @@ public class OrderPage {
         driver.findElement(telNumber).sendKeys(telephone);
         driver.findElement(inputMetro).click();
         driver.findElement(inputMetro).sendKeys(metroStation);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         driver.findElement(inputMetro).sendKeys(Keys.ARROW_DOWN);
         driver.findElement(inputMetro).sendKeys(Keys.ENTER);
     }
@@ -93,16 +92,21 @@ public class OrderPage {
         driver.findElement(nextButton).click();
     }
 
-    public void fillRentInfoForm(String comment) {
-        //установка текущей даты
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        String data = df.format(new Date());
+    public void setDeliveryDate(int dayFromToday) {
+        Calendar calendar = GregorianCalendar.getInstance();
+
+        calendar.add(Calendar.DAY_OF_MONTH, dayFromToday); //менять в случа изменения дня доставки
+        Date newDate = calendar.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String newDateAsString = dateFormat.format(newDate);
         driver.findElement(deliveryDate).clear();
-        driver.findElement(deliveryDate).sendKeys(data);
+        driver.findElement(deliveryDate).sendKeys(newDateAsString);
         driver.findElement(deliveryDate).sendKeys(Keys.ENTER);
-        //выбор срок аренды
+    }
+
+    public void fillRentInfoForm(String comment) {
+
         driver.findElement(rentPeriod).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(rentDay).click();
         driver.findElement(colourGrey).click();
         driver.findElement(commentForDelivery).sendKeys(comment);
