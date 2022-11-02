@@ -8,14 +8,13 @@ import ru.yandex.qa_scooter.helpers.BrowserRules;
 import ru.yandex.qa_scooter.pom_pages.HomePage;
 
 import static org.junit.Assert.assertTrue;
+import static ru.yandex.qa_scooter.helpers.Constants.FIRE_FOX;
 
 @RunWith(Parameterized.class)
 public class AnswerTextExistsTests {
     @Rule
     public BrowserRules browserRules = new BrowserRules(FIRE_FOX);
 
-    private static final String CHROME = "chrome";
-    private static final String FIRE_FOX = "ff";
 
     private final int questionNumber;
 
