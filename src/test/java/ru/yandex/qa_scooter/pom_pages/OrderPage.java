@@ -125,7 +125,9 @@ public class OrderPage {
     }
 
     public void makeComment(String comment) {
-        driver.findElement(commentForDelivery).sendKeys(comment);
+       if(comment != null) {
+           driver.findElement(commentForDelivery).sendKeys(comment);
+       } else driver.findElement(commentForDelivery).clear();
 
     }
 
