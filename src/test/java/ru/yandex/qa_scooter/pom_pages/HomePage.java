@@ -31,6 +31,8 @@ public class HomePage {
     }
 
     public void waitForFAQListLoad() {
+        ((JavascriptExecutor)driver)
+                .executeScript("arguments[0].scrollIntoView();", driver.findElement(By.id("accordion__heading-7")));
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(questionList));
     }

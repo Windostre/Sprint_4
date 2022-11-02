@@ -25,7 +25,7 @@ public class AnswerTextExistsTests {
 
     private final int questionNumber;
     private final boolean hasText;
-    private WebDriver driver;
+
 
     public AnswerTextExistsTests(int questionNumber, boolean hasText) {
         this.questionNumber = questionNumber;
@@ -50,7 +50,6 @@ public class AnswerTextExistsTests {
     public void importantQuestionHasVisibleText() {
         HomePage objHomePage = new HomePage(browserRules.getDriver());
         objHomePage.goToHomePage();
-        objHomePage.scrollDown();
         objHomePage.waitForFAQListLoad();
         objHomePage.clickQuestionOfFAQ(questionNumber);
         String text =  objHomePage.getAnswerOfFAQ(questionNumber);

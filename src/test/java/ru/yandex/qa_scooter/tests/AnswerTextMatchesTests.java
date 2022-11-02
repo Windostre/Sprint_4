@@ -50,7 +50,6 @@ public class AnswerTextMatchesTests {
     public void importantQuestionHasVisibleText() {
         HomePage objHomePage = new HomePage(browserRules.getDriver());
         objHomePage.goToHomePage();
-        objHomePage.scrollDown();
         objHomePage.waitForFAQListLoad();
         objHomePage.clickQuestionOfFAQ(questionNumber);
         String actualAnswer = objHomePage.getAnswerOfFAQ(questionNumber);
