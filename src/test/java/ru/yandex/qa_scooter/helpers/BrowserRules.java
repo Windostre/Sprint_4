@@ -25,9 +25,9 @@ public class BrowserRules extends ExternalResource {
     @Override
     protected void before() throws Throwable {
 
-        if("chrome".equals(browser)) {
+        if(CHROME.equals(browser)) {
             driver = new ChromeDriver();
-        } else if ("ff".equals(browser)) {
+        } else if (FIRE_FOX.equals(browser)) {
             driver = new FirefoxDriver();
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
