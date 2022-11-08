@@ -10,6 +10,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 import java.util.Objects;
 
+import static ru.yandex.qa_scooter.helpers.Constants.CHROME;
+import static ru.yandex.qa_scooter.helpers.Constants.FIRE_FOX;
+
 public class BrowserRules extends ExternalResource {
     private WebDriver driver;
     private String browser;
